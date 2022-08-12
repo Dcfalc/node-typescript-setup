@@ -1,0 +1,41 @@
+components:
+  parameters:
+    name:
+      name: name
+      description: Some name.
+      in: query
+      required: true
+      type: string
+    description:
+      name: description
+      description: Some description.
+      in: query
+      required: true
+      type: string
+    id:
+      name: id
+      description: id
+      in: path
+      required: true
+      type: integer
+  schemas:
+    example-json:
+      type: object
+      required:
+        - name
+        - description
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - bearerAuth: []
+tags:
+  name: Example
+  description: Example Tag

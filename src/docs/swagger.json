@@ -1,0 +1,78 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Node Express API Example",
+    "description": "Documentation from Some api",
+    "version": "1.0.0"
+  },
+  "basePath": "/",
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "paths": {
+    "/products/findByName": {
+      "get": {
+        "sumary": "Search example by name",
+        "produces": ["application/json"],
+        "parameters": [{
+          "in": "path",
+          "name": "name",
+          "type": "string",
+          "required": true
+        }],
+        "responses": {
+          "200": {
+            "description": "Returns json list of Examples, can be blank"
+          }
+        }
+      }
+    },
+    "/product": {
+      "post": {
+        "sumary": "Register example",
+        "tags": ["Example"],
+        "security": [{
+          "bearerAuth": []
+        }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "description": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Example name",
+                  "description": "Example description"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Returns registered example"
+          },
+          "400": {
+            "description": "Example already exists"
+          },
+          "401": {
+            "description": "Unauthorized"
+          }
+        }
+      }
+    }
+  }
+}
